@@ -32,8 +32,23 @@ public class ex03 {
             salario = s.nextDouble();
         } while (salario <= 0);
 
+        System.out.println(" Qual é o seu sexo? M-Masculino F-Feminino: ");
+        String sexo = s.next();
 
+        while (!(sexo.equalsIgnoreCase("M") || sexo.equalsIgnoreCase("F")) ){
+            System.out.println("Sexo invalido! informe um sexo valido: ");
+            sexo = s.next();
+        }
 
+        System.out.println("Qual é o seu estado civil? S-Solteiro, C-Casado, V-Viúvo, D-Divorciado");
+        String estadoCivil = s.next();
+
+        while (!(estadoCivil.equalsIgnoreCase("S") || estadoCivil.equalsIgnoreCase("C")
+                || estadoCivil.equalsIgnoreCase("V") || estadoCivil.equalsIgnoreCase("D"))){
+
+            System.out.println("Estado civil invalido! Informe um valido: ");
+            estadoCivil = s.next();
+        }
 
     }
 }
