@@ -30,6 +30,7 @@ public class ex16 {
 
 
         System.out.println("teste");
+        System.out.println("teste2");
 
         System.out.println("A soma de elementos armazenados neste vetor que são inferiores a 15 é: " + soma);
         System.out.println("A quantidade de elementos armazenados no vetor que são iguais a 15 é: " + quantiQuinze);
