@@ -23,3 +23,7 @@ Na matriz há linha e colunas
 Forma de inicialização: 
 
 ![img_2.png](img_2.png)
+
+### Matriz de 3 dimensões
+
+![img_3.png](img_3.png)
