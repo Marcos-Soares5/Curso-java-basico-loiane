@@ -27,3 +27,5 @@ Forma de inicialização:
 ### Matriz de 3 dimensões
 
 ![img_3.png](img_3.png)
+
+A linha do indice I tem quantas colunas?
