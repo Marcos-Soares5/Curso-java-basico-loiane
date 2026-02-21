@@ -42,6 +42,6 @@ Exemplo:
 
 double[][] notasAlunos = new double [3][4];
          // ↓ Mudança ([]) - Com ele esta acessando o primeiro array
-for (double[] notasAluno : notasAlunos[i])
+for (double[] notasAluno : notasAlunos)
 
 ~~~

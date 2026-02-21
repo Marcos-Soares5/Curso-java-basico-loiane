@@ -18,6 +18,9 @@ public class ex05 {
                 paisA = s.nextDouble();
             }
 
+            System.out.println("Você quer continuar? S-sim N-Não");
+            continuar = s.next();
+
             System.out.println("Informe a taxa de crescimento do pais A ");
             double taxaCrescimentoA = s.nextDouble();
 
