@@ -12,11 +12,18 @@ public class ex06 {
         String[][] p = escolha;
 
         System.out.println("\n" +
-                                  "   A "   +       " B "  +      " C "   + "\n" +
-                            "1  " + p[0][0] +"  "+ p[0][1] +"  "+ p[0][2] + "\n" +
-                            "2  " + p[1][0] +"  "+ p[1][1] +"  "+ p[1][2] + "\n" +
-                            "3  " + p[2][0] +"  "+ p[2][1] +"  "+ p[2][2]          );
+                "   A "   +       " B "  +      " C "   + "\n" +
+                "1  " + p[0][0] +"  "+ p[0][1] +"  "+ p[0][2] + "\n" +
+                "2  " + p[1][0] +"  "+ p[1][1] +"  "+ p[1][2] + "\n" +
+                "3  " + p[2][0] +"  "+ p[2][1] +"  "+ p[2][2]          );
 
+    }
+
+    public static boolean validarPosicao (int linha, int coluna){
+
+
+
+        return false;
     }
 
     public static void jogador (int j){
@@ -29,43 +36,54 @@ public class ex06 {
             simbolo = "O";
         }
 
-        System.out.println("            VEZ DO JOGADOR " + j + "       ");
-        System.out.println("Escolha a linha de 1 a 3: ");
-        int linha = s.nextInt();
+        boolean posicao = false;
 
-        while (linha < 1 || linha > 3){
-            System.out.println("Escolha invalida!");
+        while(!posicao) {
+            System.out.println("            VEZ DO JOGADOR " + j + "       ");
             System.out.println("Escolha a linha de 1 a 3: ");
-            linha = s.nextInt();
-        }
+            int linha = s.nextInt();
 
-        System.out.println("Escolha a coluna de A a C: ");
-        String coluna = s.next();
+            while (linha < 1 || linha > 3) {
+                System.out.println("Escolha invalida!");
+                System.out.println("Escolha a linha de 1 a 3: ");
+                linha = s.nextInt();
+            }
 
-        while ( !(coluna.equalsIgnoreCase("A") ||
-                coluna.equalsIgnoreCase("B") ||
-                coluna.equalsIgnoreCase("C")) ){
-
-            System.out.println("Escolha invalida!");
             System.out.println("Escolha a coluna de A a C: ");
-            coluna = s.next();
+            String c = s.next();
 
+            while (!(c.equalsIgnoreCase("A") ||
+                    c.equalsIgnoreCase("B") ||
+                    c.equalsIgnoreCase("C"))) {
+
+                System.out.println("Escolha invalida!");
+                System.out.println("Escolha a coluna de A a C: ");
+                c = s.next();
+
+            }
+
+            int coluna = 0;
+
+            switch (c.toLowerCase()){
+
+                case "b": {
+                    coluna = 1;
+                } break;
+
+                case "c": {
+                    coluna = 2;
+                } break;
+
+            }
+
+            posicao = validarPosicao(linha, coluna);
         }
 
-        switch (coluna.toLowerCase()){
-            case "a": {
-                escolha[linha - 1][0] = simbolo;
-            } break;
 
-            case "b": {
-                escolha[linha - 1][1] = simbolo;
-            } break;
+    }
 
-            case "c": {
-                escolha[linha - 1][2] = simbolo;
-            } break;
+    public static void validarVitoria (){
 
-        }
     }
 
     public static void jogoDaVelha () {
@@ -106,7 +124,7 @@ public class ex06 {
 
             switch (menu){
                 case 1: {
-                        jogoDaVelha ();
+                    jogoDaVelha ();
                 } break;
                 case 0: {
                     continuar = false;
