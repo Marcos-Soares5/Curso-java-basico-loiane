@@ -19,13 +19,6 @@ public class ex06 {
 
     }
 
-    public static boolean validarPosicao (int linha, int coluna){
-
-
-
-        return false;
-    }
-
     public static void jogador (int j){
 
         String simbolo = "";
@@ -76,14 +69,26 @@ public class ex06 {
 
             }
 
-            posicao = validarPosicao(linha, coluna);
+            posicao = validarPosicao(linha, coluna, simbolo);
         }
 
 
     }
 
-    public static void validarVitoria (){
+    public static boolean validarPosicao (int linha, int coluna, String simbolo){
 
+        if(escolha[linha - 1][coluna].equalsIgnoreCase(" ")){
+            escolha[linha - 1][coluna] = simbolo;
+            return true;
+
+        } else {
+            System.out.println("Esta posição esta sendo utilizada, escolha outra posição!");
+            return false;
+        }
+    }
+
+    public static boolean validarVitoria (){
+        return false;
     }
 
     public static void jogoDaVelha () {
@@ -96,12 +101,17 @@ public class ex06 {
         while (!fimJogo) {
             tabuleiro();
             jogador(vez);
+            fimJogo = validarVitoria();
 
-            if (vez == 1){
+            if (vez == 1 && fimJogo == false){
                 vez = 2;
-            } else {
+            } else if (vez == 2 && fimJogo == false) {
                 vez = 1;
             }
+
+
+
+
         }
 
     }
