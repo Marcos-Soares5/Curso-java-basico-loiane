@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class ex06 {
     static Scanner s = new Scanner(System.in);
 
-    static String[][] escolha = {{" "," "," "}, {" "," "," "}, {" "," "," "}};
+    static String[][] escolha;
+
+    static boolean continuar = true;
 
     public static void tabuleiro (){
 
@@ -19,15 +21,7 @@ public class ex06 {
 
     }
 
-    public static void jogador (int j){
-
-        String simbolo = "";
-
-        if (j == 1){
-            simbolo = "X";
-        } else if (j == 2){
-            simbolo = "O";
-        }
+    public static void jogador (int j, String XouO){
 
         boolean posicao = false;
 
@@ -69,16 +63,16 @@ public class ex06 {
 
             }
 
-            posicao = validarPosicao(linha, coluna, simbolo);
+            posicao = validarPosicao(linha, coluna, XouO);
         }
 
 
     }
 
-    public static boolean validarPosicao (int linha, int coluna, String simbolo){
+    public static boolean validarPosicao (int linha, int coluna, String XouO){
 
         if(escolha[linha - 1][coluna].equalsIgnoreCase(" ")){
-            escolha[linha - 1][coluna] = simbolo;
+            escolha[linha - 1][coluna] = XouO;
             return true;
 
         } else {
@@ -87,38 +81,124 @@ public class ex06 {
         }
     }
 
-    public static boolean validarVitoria (){
+    public static boolean validarVitoria (int vez, String XouO){
+
+        //verificar linhas
+        for (int i=0; i < escolha.length; i++){
+            if (escolha[i][0].equalsIgnoreCase(XouO) &&
+                escolha[i][1].equalsIgnoreCase(XouO) &&
+                escolha[i][2].equalsIgnoreCase(XouO))  {
+
+                tabuleiro();
+                System.out.println("Jogador " + vez + " ganhou! Linha " + (i+1) + " completa.");
+                return true;
+            }
+        }
+        //verificar coluna
+        for (int i=0; i < escolha.length; i++){
+            if (escolha[0][i].equalsIgnoreCase(XouO) &&
+                escolha[1][i].equalsIgnoreCase(XouO) &&
+                escolha[2][i].equalsIgnoreCase(XouO))  {
+
+                tabuleiro();
+                System.out.println("Jogador " + vez + " ganhou! Coluna " + (i+1) + " completa.");
+
+                return true;
+            }
+        }
+        //verificar diagonal
+        if (escolha[0][0].equalsIgnoreCase(XouO) &&
+            escolha[1][1].equalsIgnoreCase(XouO) &&
+            escolha[2][2].equalsIgnoreCase(XouO))  {
+
+            tabuleiro();
+            System.out.println("Jogador " + vez + " ganhou! Diagonal completa.");
+
+            return true;
+        }
+        //verificar diagonal
+        if (escolha[0][2].equalsIgnoreCase(XouO) &&
+            escolha[1][1].equalsIgnoreCase(XouO) &&
+            escolha[2][0].equalsIgnoreCase(XouO))  {
+
+            tabuleiro();
+            System.out.println("Jogador " + vez + " ganhou! Diagonal completa.");
+
+            return true;
+        }
+
         return false;
     }
 
-    public static void jogoDaVelha () {
+    public static boolean validarEmpate(){
+
+        int empate = 0;
+
+        for (int i=0; i < escolha.length; i++){
+            for (int j=0; j < escolha[i].length; j++){
+                if (escolha[i][j] != " "){
+                    empate += 1;
+                }
+            }
+        }
+
+        if (empate == 9){
+            tabuleiro();
+            System.out.println("JOGO EMPATADO!");
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void jogoDaVelha() {
         System.out.println("O jogador 1 será o X");
         System.out.println("O jogador 2 será o O");
+        escolha = new String[][] {{" "," "," "},
+                                  {" "," "," "},
+                                  {" "," "," "} };
 
         boolean fimJogo = false;
+
         int vez = 1;
+        String simbolo = "X";
 
         while (!fimJogo) {
             tabuleiro();
-            jogador(vez);
-            fimJogo = validarVitoria();
+            jogador(vez, simbolo);
+            fimJogo = validarVitoria(vez, simbolo);
 
-            if (vez == 1 && fimJogo == false){
-                vez = 2;
-            } else if (vez == 2 && fimJogo == false) {
-                vez = 1;
+            if (!fimJogo){
+
+                fimJogo = validarEmpate();
+
+                //alterar do jogador 1 para o 2 ou 2 para 1
+                if (vez == 1){
+                    vez = 2;
+                    simbolo = "O";
+                } else if (vez == 2){
+                    vez = 1;
+                    simbolo = "X";
+                }
             }
+        }
 
+        int num;
 
+        do {
+            System.out.println("1 - Voltar para o menu \n" + "0 - Encerrar o jogo");
+            num = s.nextInt();
+        } while (num < 0 || num > 1);
 
-
+        switch (num){
+            case 1: continuar = true; break;
+            case 0: continuar = false; break;
         }
 
     }
 
     public static void main(String[] args) {
 
-        boolean continuar = true;
         int menu;
 
         while(continuar){
