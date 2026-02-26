@@ -1,4 +1,4 @@
-package orientação.objetos.aula24.classes;
+package orientacao.objetos.aula24.classes;
 
 import java.util.Scanner;
 
@@ -24,6 +24,9 @@ public class TesteCarro {
         fusca.numPassageiros = 4;
         fusca.capCombustivel = 30;
         fusca.consumoCombustivel = 0.15;
+
+        System.out.println(fusca.marca);
+        System.out.println(fusca.modelo);
     }
 }
 

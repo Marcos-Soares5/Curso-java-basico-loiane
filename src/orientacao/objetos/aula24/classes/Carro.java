@@ -1,4 +1,4 @@
-package orientação.objetos.aula24.classes;
+package orientacao.objetos.aula24.classes;
 
 import java.util.Scanner;
 
